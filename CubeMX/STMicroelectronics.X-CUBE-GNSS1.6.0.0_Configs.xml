@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP xmlns="http://mcd.rou.st.com/modules.php?name=mcu" CodeTemplate="app_x-cube-gnss1_h.ftl;app_x-cube-gnss1_c.ftl" DBVersion="V4.0" Name="X-CUBE-GNSS1" RootFolder="Packs/STMicroelectronics/X-CUBE-GNSS1/6.0.0/" Version="6.0.0" xmlns:ns0="http://www.w3.org/2001/XMLSchema-instance" ns0:schemaLocation="http://mcd.rou.st.com/modules.php?name=mcu ../../../../../../../doc/V4/Development/Specifications/db/thirdPartyDb.xsd">
+   
+    <RefConfig Name="BoardOoExtensionJjGNSS">
+        <Component Name="GNSSCcBoardOoExtension:GNSS1A1:$GNSSCcBoardOoExtensionJjGNSS1A1"/>
+        <!-- CONFIG FILES -->
+        <ConfigFile Name="TESEO_LIV3F_CONF_H"/>
+        <!-- /CONFIG FILES -->
+    </RefConfig>
+	
+	<RefConfig Name="BoardOoPartJjGNSS">
+        <Component Name="GNSSCcBoardOoPart:Gnss:TeseoOoLIV3F:BareOoMetal:$GNSSCcBoardOoPartJjGnssJjTeseoOoLIV3F"/>
+        <Component Name="GNSSCcBoardOoPart:Gnss:TeseoOoLIV3F:CMSISOoFreeRTOS:$GNSSCcBoardOoPartJjGnssJjTeseoOoLIV3F"/>
+        <Component Name="GNSSCcBoardOoPart:Gnss:TeseoOoLIV3F:ThreadX:$GNSSCcBoardOoPartJjGnssJjTeseoOoLIV3F"/>
+		<!-- CONFIG FILES -->
+        <ConfigFile Name="RTOS_DEFINES_X_CUBE_GNSS"/>
+        <ConfigFile Name="RTOS_VARIABLES_X_CUBE_GNSS"/>
+        <ConfigFile Name="RTOS_POOL_CREATE_X_CUBE_GNSS"/>
+		<!-- /CONFIG FILES -->
+    </RefConfig>
+
+    <RefConfig Name="DataOoExchangeJjlibIignss">
+        <Component Name="libIignssCcDataOoExchange:libIignss:LibGNSS:$libIignssCcDataOoExchangeJjlibIignssJjLibGNSS"/>
+        <Component Name="libIignssCcDataOoExchange:libIignss:LibNMEA:$libIignssCcDataOoExchangeJjlibIignssJjLibNMEA"/>
+        <Component Name="libIignssCcDataOoExchange:libIignss:Interface:Basic:$libIignssCcDataOoExchangeJjlibIignssJjInterface"/>
+        <Component Name="libIignssCcDataOoExchange:libIignss:Interface:Template:$libIignssCcDataOoExchangeJjlibIignssJjInterface"/>
+        <!-- CONFIG FILES -->
+        <ConfigFile Name="GNSS_LIB_CONFIG_H"/>
+        <ConfigFile Name="GNSS_LIB_CONFIG_C"/>
+        <ConfigFile Name="TESEO_LIV3F_CONF_H"/>
+        <!-- /CONFIG FILES -->
+    </RefConfig>
+
+    <RefConfig Name="BoardOoSupportJjSTM32CubeIiCustomIiBSPIiDrivers">
+        <Component Name="STM32CubeIiCustomIiBSPIiDriversCcBoardOoSupport:Custom:GNSS:$STM32CubeIiCustomIiBSPIiDriversCcBoardOoSupportJjCustomJjGNSS"/>
+        <!-- CONFIG FILES -->
+        <ConfigFile Name="TESEO_LIV3F_CONF_H"/>
+        <ConfigFile Name="CUSTOM_GNSS_C"/>
+        <ConfigFile Name="CUSTOM_GNSS_H"/>
+        <!-- /CONFIG FILES -->
+    </RefConfig>
+
+    <RefConfig Name="DeviceJjGNSS1IiApplications">
+        <!-- Method for pre OS initialization functions. It is generated when an RTOS is used -->
+        <CallLibMethod Name="MX_GNSS_PreOSInit" ReturnHAL="false" Phase="preOS" />
+		<!-- Method for post OS initialization functions. It is generated when an RTOS is used -->
+        <CallLibMethod Name="MX_GNSS_PostOSInit" ReturnHAL="false" Phase="postOS" />
+		
+		
+        <Component Name="GNSS1IiApplicationsCcDevice:Application:GetPos:$GNSS1IiApplicationsCcDeviceJjApplication"/>
+        <Component Name="GNSS1IiApplicationsCcDevice:Application:SimOSGetPos:$GNSS1IiApplicationsCcDeviceJjApplication"/>
+        <Component Name="GNSS1IiApplicationsCcDevice:Application:VirtualCOMPort:$GNSS1IiApplicationsCcDeviceJjApplication"/>
+        <Component Name="GNSS1IiApplicationsCcDevice:Application:FWUpdater:$GNSS1IiApplicationsCcDeviceJjApplication"/>
+        <!-- CONFIG FILES -->
+        <ConfigFile Name="GETPOS_DEMO_C"/>
+        <ConfigFile Name="GETPOS_DEMO_GV_C"/>
+        <ConfigFile Name="GETPOS_DEMO_INIT_C"/>
+        <ConfigFile Name="GETPOS_GNSS_FEATURE_CFG_DATA_H"/>
+        <ConfigFile Name="GETPOS_GNSS_UTILS_C"/>
+        <ConfigFile Name="GETPOS_GNSS_UTILS_H"/>
+        <ConfigFile Name="SIMOSGETPOS_DEMO_C"/>
+        <ConfigFile Name="SIMOSGETPOS_DEMO_GV_C"/>
+        <ConfigFile Name="SIMOSGETPOS_DEMO_INIT_C"/>
+        <ConfigFile Name="SIMOSGETPOS_GNSS_FEATURE_CFG_DATA_H"/>
+        <ConfigFile Name="VIRTUAL_COM_PORT_C"/>
+        <ConfigFile Name="VIRTUAL_COM_PORT_GV_C"/>
+        <ConfigFile Name="VIRTUAL_COM_PORT_INIT_C"/>
+        <ConfigFile Name="FW_Updater_C"/>
+        <ConfigFile Name="FW_Updater_GV_C"/>
+        <ConfigFile Name="FW_Updater_INIT_C"/>
+        <ConfigFile Name="TESEO_LIV3F_CONF_H"/>
+        <!-- /CONFIG FILES -->		
+    </RefConfig>
+
+    <!-- Method for pre OS initialization functions. It is generated when an RTOS is used -->
+    <LibMethod Comment="" Name="MX_GNSS_PreOSInit" Optimizable="true"/>
+	<!-- Method for post OS initialization functions. It is generated when an RTOS is used -->
+    <LibMethod Comment="" Name="MX_GNSS_PostOSInit" Optimizable="true"/>
+
+    <!-- File with definition of the ThreadX memory pool size -->
+    <RefConfigFile Name="RTOS_DEFINES_X_CUBE_GNSS" Description="File with definition of the ThreadX memory pool size" Template="RTOS_defines_X-CUBE-GNSS1.ftl"> 
+        <File Name="RTOS_defines_X-CUBE-GNSS1.tmp" Category="header" Version="" Condition="SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" />  		
+    </RefConfigFile>
+    <!-- File with the ThreadX memory pool declaration -->
+    <RefConfigFile Name="RTOS_VARIABLES_X_CUBE_GNSS" Description="File with the ThreadX memory pool declaration" Template="RTOS_variables_X-CUBE-GNSS1.ftl"> 
+        <File Name="RTOS_variables_X-CUBE-GNSS1.tmp" Category="header" Version="" Condition="SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" />  		
+    </RefConfigFile>
+    <!-- File with the call to the ThreadX memory pool creation -->
+    <RefConfigFile Name="RTOS_POOL_CREATE_X_CUBE_GNSS" Description="File with the call to the ThreadX memory pool creation" Template="RTOS_pool_create_X-CUBE-GNSS1.ftl"> 
+        <File Name="RTOS_pool_create_X-CUBE-GNSS1.tmp" Category="header" Version="" Condition="SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" />  		
+    </RefConfigFile>
+
+    <!-- #define for the sample applications-->
+    <RefConfigFile Name="TESEO_LIV3F_CONF_H" Description="Header file for Teseo LIV3F settings #define" Template="teseo_liv3f_conf_h.ftl">
+        <File Name="Target/teseo_liv3f_conf.h" Category="header" Version="" Condition="all"/>
+        <Argument Name="GNSS_DEVICE" GenericType="simple" Comment="ST GNSS device" Added="true" Condition="all"/>
+        <Argument Name="GNSS_DEBUG" GenericType="simple" Comment="Low level debug" Added="true" Condition="all"/>
+        <Argument Name="TeseoIII_ODOMETER" GenericType="simple" Comment="TeseoIII Odometer" Added="true" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos |SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos"/>
+        <Argument Name="TeseoIII_GEOFENCE" GenericType="simple" Comment="TeseoIII Geofence" Added="true" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos |SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos"/>
+        <Argument Name="TeseoIII_DATALOG" GenericType="simple" Comment="TeseoIII Datalog" Added="true" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos |SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos"/>
+    </RefConfigFile>
+	
+    <!-- CUSTOM BSP FILES -->
+    <RefConfigFile Name="CUSTOM_GNSS_H" Description="Header file with custom BSP APIs" Template="custom_gnss_h.ftl" Added="true">
+        <File Name="Target/custom_gnss.h" Category="header" Version="" Condition="SEMBoardOoSupportJjCustomJjGNSS" />
+    </RefConfigFile>
+    <RefConfigFile Name="CUSTOM_GNSS_C" Description="Source file with custom BSP APIs implementation" Template="custom_gnss_c.ftl" Added="true">
+        <File Name="Target/custom_gnss.c" Category="source" Version="" Condition="SEMBoardOoSupportJjCustomJjGNSS" />
+    </RefConfigFile>
+	
+    <!-- GNSS LIB CONFIG_FILE -->
+    <RefConfigFile Name="GNSS_LIB_CONFIG_H" Description="Header file with #defines for the GNSS library" Template="gnss_lib_config_h.ftl" Added="true">
+        <File Name="Target/gnss_lib_config.h" Category="header" Version="" Condition="SEMlibIignssCcDataOoExchangeJjlibIignssJjInterfaceJjBasic" />
+    </RefConfigFile>
+    <RefConfigFile Name="GNSS_LIB_CONFIG_C" Description="Source file for the GNSS library in case of custom board" Template="gnss_lib_config_c.ftl" Added="true">
+        <File Name="Target/gnss_lib_config.c" Category="source" Version="" Condition="SEMlibIignssCcDataOoExchangeJjlibIignssJjInterfaceJjBasic" />
+    </RefConfigFile>
+
+    <!--GetPos application --> 
+    <RefConfigFile Name="GETPOS_DEMO_C" Description="Source for GetPos sample application" Template="getpos_demo_c.ftl"> 
+        <File Name="getpos_demo.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos" />  		
+    </RefConfigFile>
+    <RefConfigFile Name="GETPOS_DEMO_GV_C" Description="Source for GetPos sample application" Template="getpos_demo_gv_c.ftl">
+        <File Name="getpos_demo_gv.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos" />
+    </RefConfigFile>
+    <RefConfigFile Name="GETPOS_DEMO_INIT_C" Description="Source for GetPos sample application" Template="getpos_demo_init_c.ftl">
+        <File Name="getpos_demo_init.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos" />
+    </RefConfigFile>
+    <RefConfigFile Name="GETPOS_GNSS_FEATURE_CFG_DATA_H" Description="Header file for configuring the GetPos sample application" Template="getpos_gnss_feature_cfg_data_h.ftl">
+        <File Name="App/gnss_feature_cfg_data.h" Category="header" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos" />
+    </RefConfigFile>
+    <RefConfigFile Name="GETPOS_GNSS_UTILS_C" Description="Source file for GetPos sample application" Template="getpos_gnss_utils_c.ftl">
+        <File Name="App/gnss_utils.c" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos" />
+    </RefConfigFile>
+    <RefConfigFile Name="GETPOS_GNSS_UTILS_H" Description="Header file for GetPos sample application" Template="getpos_gnss_utils_h.ftl">
+        <File Name="App/gnss_utils.h" Category="header" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos" />
+    </RefConfigFile>
+
+    <!--SimOSGetPos application --> 
+    <RefConfigFile Name="SIMOSGETPOS_DEMO_C" Description="Source for SimOSGetPos sample application" Template="simosgetpos_demo_c.ftl"> 
+        <File Name="simosgetpos_demo.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos" />  		
+    </RefConfigFile>
+    <RefConfigFile Name="SIMOSGETPOS_DEMO_GV_C" Description="Source for SimOSGetPos sample application" Template="simosgetpos_demo_gv_c.ftl">
+        <File Name="simosgetpos_demo_gv.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos" />
+    </RefConfigFile>
+    <RefConfigFile Name="SIMOSGETPOS_DEMO_INIT_C" Description="Source for SimOSGetPos sample application" Template="simosgetpos_demo_init_c.ftl">
+        <File Name="simosgetpos_demo_init.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos" />
+    </RefConfigFile>
+    <RefConfigFile Name="SIMOSGETPOS_GNSS_FEATURE_CFG_DATA_H" Description="Header file for configuring the SimOSGetPos sample application" Template="simosgetpos_gnss_feature_cfg_data_h.ftl">
+        <File Name="App/gnss_feature_cfg_data.h" Category="header" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos" />
+    </RefConfigFile>
+	
+	<!--VirtualCOMPort application --> 
+    <RefConfigFile Name="VIRTUAL_COM_PORT_C" Description="Source for VirtualCOMPort sample application" Template="virtual_com_port_c.ftl"> 
+        <File Name="virtual_com_port.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort" />  		
+    </RefConfigFile>
+    <RefConfigFile Name="VIRTUAL_COM_PORT_GV_C" Description="Source for VirtualCOMPort sample application" Template="virtual_com_port_gv_c.ftl">
+        <File Name="virtual_com_port_gv.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort" />
+    </RefConfigFile>
+    <RefConfigFile Name="VIRTUAL_COM_PORT_INIT_C" Description="Source for VirtualCOMPort sample application" Template="virtual_com_port_init_c.ftl">
+        <File Name="virtual_com_port_init.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort" />
+    </RefConfigFile>
+
+    <!--FW_Update application --> 
+    <RefConfigFile Name="FW_Updater_C" Description="Source for FW_Update sample application" Template="fw_updater_c.ftl"> 
+        <File Name="fw_updater.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjFWUpdater" />  		
+    </RefConfigFile>
+    <RefConfigFile Name="FW_Updater_GV_C" Description="Source for FW_Update sample application" Template="fw_updater_gv_c.ftl">
+        <File Name="fw_updater_gv.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjFWUpdater" />
+    </RefConfigFile>
+    <RefConfigFile Name="FW_Updater_INIT_C" Description="Source for FW_Update sample application" Template="fw_updater_init_c.ftl">
+        <File Name="fw_updater_init.tmp" Category="source" Version="" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjFWUpdater" />
+    </RefConfigFile>
+
+    <!-- RTE Components -->	
+    <RefConfigFile Name="RTE_Component" Template="RTE_Components.ftl">
+        <File Category="header" Condition="all" Name="Target/RTE_Components.h"/>
+    </RefConfigFile>
+
+    <RefComponent Cclass="GNSSCcBoardOoExtension" Cgroup="GNSS1A1" Cversion="4Gg0Gg0">
+        <File Category="header" Condition="" Name="Drivers/BSP/GNSS1A1/gnss1a1_gnss.h"/>
+        <File Category="source" Condition="" Name="Drivers/BSP/GNSS1A1/gnss1a1_gnss.c"/>
+    </RefComponent>
+	
+    <RefComponent Cclass="GNSSCcBoardOoPart" Cgroup="Gnss" Cversion="5Gg0Gg0">
+        <SubComponent Csub="TeseoOoLIV3F" Cvariant="BareOoMetal:BareOoMetal" Cversion="5Gg0Gg0">
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_i2c.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_i2c.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_queue.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_queue.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_uart.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_uart.c"/>
+        </SubComponent>
+        <SubComponent Csub="TeseoOoLIV3F" Cvariant="CMSISOoFreeRTOS:CMSISOoFreeRTOS" Cversion="5Gg0Gg0">
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_i2c.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_i2c.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_queue.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_queue.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_uart.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_uart.c"/>
+        </SubComponent>
+        <SubComponent Csub="TeseoOoLIV3F" Cvariant="ThreadX:ThreadX" Cversion="5Gg0Gg0">
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_i2c.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_i2c.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_queue.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_queue.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_uart.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/Components/teseo_liv3f/teseo_liv3f_uart.c"/>
+        </SubComponent>
+    </RefComponent>
+	
+    <RefComponent Cclass="libIignssCcDataOoExchange" Cgroup="libIignss" Cversion="5Gg0Gg0">
+        <SubComponent Csub="LibGNSS" Cvariant="true" Cversion="5Gg0Gg0">
+            <File Category="header" Condition="" Name="Middlewares/ST/lib_gnss/LibGNSS/Inc/gnss_parser.h"/>
+            <File Category="header" Condition="" Name="Middlewares/ST/lib_gnss/LibGNSS/Inc/gnss_data.h"/>
+            <File Category="header" Condition="" Name="Middlewares/ST/lib_gnss/LibGNSS/Inc/gnss_datalog.h"/>
+            <File Category="header" Condition="" Name="Middlewares/ST/lib_gnss/LibGNSS/Inc/gnss_geofence.h"/>
+            <File Category="source" Condition="" Name="Middlewares/ST/lib_gnss/LibGNSS/Src/gnss_parser.c"/>
+            <File Category="source" Condition="" Name="Middlewares/ST/lib_gnss/LibGNSS/Src/gnss_data.c"/>
+        </SubComponent>
+        <SubComponent Csub="LibNMEA" Cvariant="true" Cversion="5Gg0Gg0">
+            <File Category="header" Condition="" Name="Middlewares/ST/lib_gnss/LibNMEA/Inc/NMEA_parser.h"/>
+            <File Category="source" Condition="" Name="Middlewares/ST/lib_gnss/LibNMEA/Src/NMEA_parser.c"/>
+        </SubComponent>
+        <SubComponent Csub="Interface" Cvariant="Basic:Basic" Cversion="5Gg0Gg0">
+            <!-- <File Category="source" Condition="" Name="Middlewares/ST/lib_gnss/Basic/gnss_lib_config.c"/> -->
+        </SubComponent>
+        <SubComponent Csub="Interface" Cvariant="Template:Template" Cversion="5Gg0Gg0">
+            <File Category="source" Condition="" Name="Middlewares/ST/lib_gnss/Template/gnss_lib_config.c" select="true"/>
+            <File Category="header" Condition="" Name="Middlewares/ST/lib_gnss/Template/gnss_lib_config.h" select="true"/>
+        </SubComponent>
+    </RefComponent>
+
+    <RefComponent Cclass="STM32CubeIiCustomIiBSPIiDriversCcBoardOoSupport" Cgroup="Custom" Cversion="4Gg0Gg0">
+        <SubComponent Csub="GNSS" Cvariant="true" Cversion="4Gg0Gg0">
+            <!-- <File Category="header" Condition="" Name="Drivers/BSP/Components/Common/gnss.h"/> -->
+        </SubComponent>
+    </RefComponent>
+	
+    <RefComponent Cclass="GNSS1IiApplicationsCcDevice" Cgroup="Application" Cversion="6Gg0Gg0">
+        <SubComponent Csub="" Cvariant="FWUpdater:FWUpdater" ModuleName="GNSS">
+            <File Category="doc" Condition="" Name="Middlewares/ST/lib_gnss/doc/Applications/FWUpdater/readme.md" select="readme file"/>
+        </SubComponent>
+        <SubComponent Csub="" Cvariant="VirtualCOMPort:VirtualCOMPort" ModuleName="GNSS">
+            <File Category="doc" Condition="" Name="Middlewares/ST/lib_gnss/doc/Applications/VirtualCOMPort/readme.md" select="readme file"/>
+        </SubComponent>
+        <SubComponent Csub="" Cvariant="SimOSGetPos:SimOSGetPos" ModuleName="GNSS">
+            <File Category="doc" Condition="" Name="Middlewares/ST/lib_gnss/doc/Applications/SimOSGetPos/readme.md" select="readme file"/>
+        </SubComponent>
+        <SubComponent Csub="" Cvariant="GetPos:GetPos" ModuleName="GNSS">
+            <File Category="doc" Condition="" Name="Middlewares/ST/lib_gnss/doc/Applications/GetPos/readme.md" select="readme file"/>
+        </SubComponent>
+    </RefComponent>
+ 
+    <!-- I2C --> 
+  	<RefBspComponent BspIpName="I2C" BspModeName="I2C" Name="Bus_TeseoIII">
+      <File Category="template" Name="gnss1a1_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent> 
+  	<RefBspComponent BspIpName="I2C" BspModeName="I2C" Name="Bus_Custom">
+      <File Category="template" Name="custom_board_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+	
+    <!-- UART -->
+    <RefBspComponent BspIpName="UART" BspModeName="Asynchronous" Name="Bus_TeseoIII">
+      <File Category="template" Name="gnss1a1_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+	
+    <RefBspComponent BspIpName="USART" BspModeName="Asynchronous" Name="Bus_TeseoIII">
+      <File Category="template" Name="gnss1a1_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+
+    <RefBspComponent BspIpName="LPUART" BspModeName="Asynchronous" Name="Bus_TeseoIII">
+      <File Category="template" Name="gnss1a1_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+	
+    <RefBspComponent BspIpName="UART" BspModeName="Asynchronous" Name="Bus_Custom">
+      <File Category="template" Name="custom_board_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+	
+    <RefBspComponent BspIpName="USART" BspModeName="Asynchronous" Name="Bus_Custom">
+      <File Category="template" Name="custom_board_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+	
+    <RefBspComponent BspIpName="LPUART" BspModeName="Asynchronous" Name="Bus_Custom">
+      <File Category="template" Name="custom_board_conf_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_h.ftl"/>
+      <File Category="template" Condition="SEMGNSS1IiApplicationsCcDeviceJjApplicationJjGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjSimOSGetPos|SEMGNSS1IiApplicationsCcDeviceJjApplicationJjVirtualCOMPort|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjBareOoMetal|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjCMSISOoFreeRTOS|SEMGNSSCcBoardOoPartJjGnssJjTeseoOoLIV3FJjThreadX" Name="stm32_bus_ex_c.ftl"/>
+    </RefBspComponent>
+
+    <!-- UART  for application-->
+    <RefBspComponent BspIpName="UART|USART|LPUART" BspModeName="Asynchronous" Name="BSP USART"/>
+
+    <!-- Reset Pin -->
+    <RefBspComponent BspIpName="GPIO" BspModeName="Output" Name="Reset Pin">
+      <File Category="template" Name="gnss1a1_conf_h.ftl"/>
+    </RefBspComponent> 
+    <RefBspComponent BspIpName="GPIO" BspModeName="Output" Name="Reset Pin Custom">
+      <File Category="template" Name="custom_board_conf_h.ftl"/>
+    </RefBspComponent>
+
+    <!-- Wake up Pin --> 
+    <RefBspComponent BspIpName="GPIO" BspModeName="Output" Name="Wake Up Pin">
+      <File Category="template" Name="gnss1a1_conf_h.ftl"/>
+    </RefBspComponent> 
+    <RefBspComponent BspIpName="GPIO" BspModeName="Output" Name="Wake Up Pin Custom">
+      <File Category="template" Name="custom_board_conf_h.ftl"/>
+    </RefBspComponent>
+
+	<!-- BSP Button --> 
+    <RefBspComponent Name="BSP BUTTON" BspIpName="GPIO" BspModeName="EXTI"/> 
+
+</IP>
+
